@@ -1,0 +1,17 @@
+Texture2D singleTexture : register(t0);
+SamplerState singleSampler : register(s0);
+
+struct VS_INPUT
+{
+	float4 pos: SV_POSITION;
+	float2 texcoord: TEXCOORD0;
+};
+
+float4 main(VS_INPUT input): SV_Target
+{
+	float4 color = singleTexture.Sample(singleSampler, input.texcoord);
+	if(color.a <= 0.3f)	
+		return float4(1.f, 0.64f, 0.f, 0.5f);
+	//clip(color.a - 0.3f);
+	return color * float4(1.f, 0.64f, 0.f, 0.3f);
+}
