@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameDesk.h"
+#include "Mesh.h"
 
 class Player
 {
