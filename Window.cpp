@@ -81,7 +81,7 @@ void OSWindowsWindow::init(WindowParameters wp)
 	rp.setHwnd(hwnd);
 	RECT rect;
 	if (!GetWindowRect(hwnd, &rect))
-		throw new ExceptionWindow(L"Error call GetWindowRect.\n");
+		throw ExceptionWindow(L"Error call GetWindowRect.\n");
 	rp.setClientWidth(rect.right - rect.left);
 	rp.setClientHeight(rect.bottom - rect.top);
 	render->init(rp);
@@ -92,7 +92,7 @@ void OSWindowsWindow::resizeWindow()
 	WINDOWPLACEMENT winPlace;
 	winPlace.length = sizeof(WINDOWPLACEMENT);
 	if(!GetWindowPlacement(hwnd, &winPlace)) 
-		throw new ExceptionWindow(L"Error call GetWindowPlacement.\n");
+		throw ExceptionWindow(L"Error call GetWindowPlacement.\n");
 	if (winPlace.showCmd == SW_HIDE || winPlace.showCmd == SW_SHOWMINIMIZED) // если окно свернуто
 	{
 		render->setRunning(false); // остановка рендеринга
@@ -105,7 +105,7 @@ void OSWindowsWindow::resizeWindow()
 	{
 		RECT rect;
 		if (!GetClientRect(hwnd, &rect))
-			throw new ExceptionWindow(L"Error call GetClientRect.\n");
+			throw ExceptionWindow(L"Error call GetClientRect.\n");
 		render->resizeViewport(rect.right - rect.left, rect.bottom - rect.top);
 	}
 }
@@ -163,7 +163,7 @@ LRESULT OSWindowsWindow::localWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		auto yPos(GET_Y_LPARAM(lParam));
 		RECT rect;
 		if (!GetClientRect(hwnd, &rect))
-			throw new ExceptionWindow(L"Error call GetClientRect.\n");
+			throw ExceptionWindow(L"Error call GetClientRect.\n");
 		render->getScene()->checkMouseHoverChess((rect.right - rect.left), (rect.bottom - rect.top), xPos, yPos);
 		break;
 	}
@@ -174,7 +174,7 @@ LRESULT OSWindowsWindow::localWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		auto yPos(GET_Y_LPARAM(lParam));
 		RECT rect;
 		if (!GetClientRect(hwnd, &rect))
-			throw new ExceptionWindow(L"Error call GetClientRect.\n");
+			throw ExceptionWindow(L"Error call GetClientRect.\n");
 		render->getScene()->checkMouseClickChess((rect.right - rect.left), (rect.bottom - rect.top), xPos, yPos);
 		break;
 	}

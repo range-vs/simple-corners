@@ -174,7 +174,7 @@ void OSWindowsDirect3D11Render::init(RenderParameters rp)
 	SceneParameters sp;
 	RECT rect;
 	if (!GetClientRect(hwnd, &rect))
-		throw new ExceptionWindow(L"Error call GetClientRect.\n");
+		throw ExceptionWindow(L"Error call GetClientRect.\n");
 	sp.setClientWidth(rect.right - rect.left);
 	sp.setClientHeight(rect.bottom - rect.top);
 	scene->init(sp);
