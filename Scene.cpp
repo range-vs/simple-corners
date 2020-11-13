@@ -445,4 +445,3 @@ void Direct3D11Scene::render(const ComPtr<ID3D11RenderTargetView>& d3dRenderTarg
 	}
 }
 
-// залить на гит, описание, и пара скринов
